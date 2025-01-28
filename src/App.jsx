@@ -10,7 +10,7 @@ const handleRandom = () => {
   if (randomNumber === randomNumber2) {
     return handleRandom()
   } else {
-    return randomNumber
+    return randomNumber2
   }
 }
 
@@ -22,13 +22,15 @@ const shuffledArray = array => {
   return array
 }
 
-const pokemonList = [handleRandom(), handleRandom(), handleRandom(), handleRandom(), handleRandom(), handleRandom(), handleRandom(), handleRandom(), handleRandom(), handleRandom()]
+const pokemonList = Array.from({ length: 10 }, () => ({
+  id: handleRandom(),
+  clicked: false,
+}))
 
 function App() {
-
   const [initialPokemons, setInitialPokemons] = useState(pokemonList)
-
-
+  const [score, setScore] = useState(0)
+  const [bestScore, setBestScore] = useState(0)
 
   const handleImage = () => {
     const shuffledPokemons = shuffledArray([...initialPokemons])
@@ -36,12 +38,30 @@ function App() {
     console.log('shuffled')
   }
 
+  const handleScore = (index) => {
+    setInitialPokemons(prevPokemons => {
+      const newPokemons = [...prevPokemons]
+      if (newPokemons[index].clicked) {
+        setBestScore(prevBestScore => Math.max(prevBestScore, score))
+        window.location.reload()
+        return newPokemons
+      } else {
+        newPokemons[index].clicked = true
+        setScore(prevScore => prevScore + 1)
+        return newPokemons
+      }
+    })
+  }
+
   return (
     <>
-    <Header/>
+    <Header score={score} bestScore={bestScore}/>
     <div className="card-container">
       {initialPokemons.map((element, index) => {
-        return <Card pokemon={element} key={index} onClick={handleImage}/>
+        return <Card pokemon={element.id} key={index} onClick={() => {
+          handleScore(index)
+          handleImage()
+        }}/>
       })}
     </div>
     <Footer/>
