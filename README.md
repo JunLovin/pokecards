@@ -6,6 +6,6 @@ You cannot click the same twice cards!
 
 Here's the commands for the people who wants to run locally and edit the game.
 
-`git clone https://github.com/JunLovin/pokecards.git`
-`cd pokecards`
+`git clone https://github.com/JunLovin/pokecards.git`\
+`cd pokecards`\
 `npm start`
