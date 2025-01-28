@@ -1,0 +1,36 @@
+.card-container {
+    margin: 0 auto;
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+    padding: 1rem 0;
+}
+
+.card-container .card-image {
+    padding: 2rem;
+    border: 1px solid var(--black);
+    border-radius: 1rem;
+    transition: transform 100ms ease-in-out;
+}
+
+.card-container .card-image h3 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.card-container .card-image img {
+    width: 10rem;
+    cursor: pointer;
+}
+
+.card-container .card-image:hover {
+    transform: scale(1.1);
+}
+
+.card-container .card-image:active {
+    transform: scale(1);
+}
