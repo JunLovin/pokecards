@@ -1,6 +1,6 @@
 import '@styles/header.css'
 
-function Header({ score = 0, bestScore = 0 }) {
+function Header({ score, bestScore }) {
     return (
         <>
             <header>
